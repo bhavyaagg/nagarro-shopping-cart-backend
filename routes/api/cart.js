@@ -6,7 +6,7 @@ const Cart = require('../../db').Cart
 const route = require('express').Router();
 const User = require('../../db').User
 
-route.post('incProduct', (req, res) => {
+route.post('/incProduct', (req, res) => {
   User.find({
     where: {
       name: req.body.name,
@@ -30,6 +30,11 @@ route.post('incProduct', (req, res) => {
         qty: 1
       }
     }).then((cart) => {
+      if (!cart[1]) {
+        cart[0].qty+=1;
+        cart[0].save();
+        return;
+      }
       console.log(cart)
     })
   })
