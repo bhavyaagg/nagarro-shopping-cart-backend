@@ -49,7 +49,8 @@ const Cart = db.define('carts', {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true
-  }
+  },
+  qty: Sequelize.DataTypes.NUMBER
 });
 
 Cart.belongsTo(User);
