@@ -31,11 +31,45 @@ route.post('/incProduct', (req, res) => {
       }
     }).then((cart) => {
       if (!cart[1]) {
-        cart[0].qty+=1;
+        cart[0].qty += 1;
         cart[0].save();
         return;
       }
       console.log(cart)
+    })
+  })
+})
+
+route.post('/decProduct', (req, res) => {
+  User.find({
+    where: {
+      name: req.body.name,
+      password: req.body.password
+    }
+  }).then((user) => {
+    if (!user) {
+      return res.send({
+        success: false,
+        msg: "Incorrect User Details"
+      })
+    }
+    Cart.find({
+      where: {
+        userId: user.id,
+        productId: req.body.productId
+      }
+    }).then((cart) => {
+      if (cart.qty === 1) {
+        cart.destroy();
+        return res.send({
+          success: true
+        })
+      }
+      cart.qty -= 1;
+      cart.save()
+      res.send({
+        success: true
+      })
     })
   })
 })
