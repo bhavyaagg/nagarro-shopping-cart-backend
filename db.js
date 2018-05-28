@@ -50,7 +50,7 @@ const Cart = db.define('carts', {
     autoIncrement: true,
     primaryKey: true
   },
-  qty: Sequelize.DataTypes.NUMBER
+  qty: Sequelize.DataTypes.INTEGER
 });
 
 Cart.belongsTo(User);
@@ -58,7 +58,7 @@ Cart.belongsTo(Product);
 User.hasMany(Cart);
 Product.hasMany(Cart);
 
-db.sync()
+db.sync({})
   .then(() => console.log("Database has been synced"))
   .catch((err) => console.error("Error creating database"))
 
