@@ -68,7 +68,7 @@ route.post('/login', (req, res) => {
       })
     }
     res.status(200).send({
-      sucess: true,
+      success: true,
       data: user
     })
   }).catch((err) => {
