@@ -11,13 +11,18 @@ const db = new Sequelize('shopdb', 'shopper', 'shoppass', {
 
 const User = db.define('users', {
   id: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
   name: {
-    type: Sequelize.STRING,
+    type: Sequelize.DataTypes.STRING,
     allowNull: false,
+    unique: true
+  },
+  password: {
+    type: Sequelize.DataTypes.STRING,
+    allowNull: false
   }
 })
 
