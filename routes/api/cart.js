@@ -33,9 +33,10 @@ route.post('/incProduct', (req, res) => {
       if (!cart[1]) {
         cart[0].qty += 1;
         cart[0].save();
-        return;
       }
-      console.log(cart)
+      res.send({
+        success: true
+      })
     })
   })
 })

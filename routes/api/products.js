@@ -30,6 +30,7 @@ route.get('/', (req, res) => {
       }
       return product;
     })
+    products.sort((a, b) => a.id - b.id);
     res.status(200).send(products)
   }).catch((err) => {
     console.log(err)

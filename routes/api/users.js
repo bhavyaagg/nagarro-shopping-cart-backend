@@ -31,10 +31,13 @@ route.post('/register', (req, res) => {
     name: req.body.name,
     password: req.body.password
   }).then((user) => {
-    res.status(201).send(user)
+    res.status(201).send({
+      success: true,
+      data: user
+    })
   }).catch((err) => {
     console.log(err)
-    if(err.name === 'SequelizeUniqueConstraintError'){
+    if (err.name === 'SequelizeUniqueConstraintError') {
       return res.status(501).send({
         success: false,
         msg: "User with this name already exists"
