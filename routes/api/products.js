@@ -53,10 +53,14 @@ route.post('/', (req, res) => {
     manufacturer: req.body.manufacturer,
     price: parseFloat(req.body.price)
   }).then((product) => {
-    res.status(201).send(product)
+    res.status(201).send({
+      success: true,
+      data: product
+    })
   }).catch((error) => {
     res.status(501).send({
-      error: "Error adding product"
+      success: false,
+      msg: "Error adding product"
     })
   })
 })
